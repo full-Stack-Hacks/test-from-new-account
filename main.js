@@ -1,22 +1,42 @@
+class Person {
+    constructor(name, age) {
+        this.name = name
+        this.age = age
+    }
+}
 
-
-
-// custom map
-
-function customMap(arr, fx) {
-    const newArr = []
-
-    for(let i = 0; i < arr.length; i++) {
-        let current = arr[i]
-        newArr.push(fx(current))
+class King extends Person {
+    constructor(name, age, kingdom) {
+        super(name, age)
+        this.kingdom = kingdom
     }
 
-    return newArr
+    decree() {
+        return `I Decree taxes to the subjects of ${this.kindom}`
+    }
 }
 
-function doubler(num) {
-    return num * 2
+class Knight extends Person {
+    constructor(name, age, king) {
+        super(name, age)
+        this.king = king
+    }
+
+    collectTaxes() {
+        return `I am collecting taxes for ${this.king}`
+    }
 }
 
-const arr = [1,2,3,4,5]
-console.log(customMap(arr, doubler))
+class Squire extends Knight {
+    constructor(name, age, king, rank) {
+        super(name, age, king)
+        this.rank = rank
+    }
+
+    getRank() {
+        return `${this.name} is a ${this.rank} knight.`
+    }
+}
+
+const squire = new Squire('Garrett', 23, 'Larry the ordinary', 'Junior grade') 
+console.log(squire.getRank())
